@@ -1,9 +1,9 @@
 import { Plugins } from '@capacitor/core';
-import { IterablePlugin } from './definitions';
+import { IterableProtocol } from './definitions';
 
 const { IterablePlugin } = Plugins;
 
-export class Iterable implements IterablePlugin {
+export class Iterable implements IterableProtocol {
     setEmail(options: { email?: string; }): Promise<void> {
         return IterablePlugin.setEmail(options);
     }

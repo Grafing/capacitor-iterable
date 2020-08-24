@@ -1,10 +1,10 @@
 declare global {
   interface PluginRegistry {
-    IterablePlugin: IterablePlugin;
+    IterablePlugin: IterableProtocol;
   }
 }
 
-export interface IterablePlugin {
+export interface IterableProtocol {
   setEmail(options: {
     email?: string;
   }): Promise<void>;
