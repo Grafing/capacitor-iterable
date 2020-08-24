@@ -56,9 +56,9 @@
   "swiftlint": "@ionic/swiftlint-config",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TomiMavrin/Iterable"
+    "url": "https://github.com/TomiMavrin/capacitor-iterable"
   },
   "bugs": {
-    "url": "https://github.com/TomiMavrin/Iterable/issues"
+    "url": "https://github.com/TomiMavrin/capacitor-iterable/issues"
   }
 }
