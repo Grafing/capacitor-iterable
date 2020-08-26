@@ -15,6 +15,9 @@ var capacitorPlugin = (function (exports, core) {
         unregisterPush() {
             return IterablePlugin.unregisterPush();
         }
+        refreshToken() {
+            return IterablePlugin.refreshToken();
+        }
         updateUserInfo(options) {
             return IterablePlugin.updateUserInfo(options);
         }

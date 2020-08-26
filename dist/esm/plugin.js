@@ -13,6 +13,9 @@ export class Iterable {
     unregisterPush() {
         return IterablePlugin.unregisterPush();
     }
+    refreshToken() {
+        return IterablePlugin.refreshToken();
+    }
     updateUserInfo(options) {
         return IterablePlugin.updateUserInfo(options);
     }

@@ -7,6 +7,7 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.iterable.iterableapi.IterableApi;
 import com.iterable.iterableapi.IterableConfig;
+import com.iterable.iterableapi.IterableFirebaseMessagingService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,7 +45,12 @@ public class IterablePlugin extends Plugin {
     @PluginMethod()
     public void registerForPush(PluginCall call){
         IterableApi.getInstance().registerForPush();
+        call.success();
+    }
 
+    @PluginMethod()
+    public void refreshToken(PluginCall call){
+        IterableFirebaseMessagingService.handleTokenRefresh();
         call.success();
     }
 
