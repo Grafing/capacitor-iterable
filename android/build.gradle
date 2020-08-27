@@ -52,5 +52,5 @@ dependencies {
 
     implementation 'com.iterable:iterableapi:3.2.2'
     implementation 'com.iterable:iterableapi-ui:3.2.2' 
-    implementation 'com.google.firebase:firebase-messaging:X.X.X' 
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
 }
