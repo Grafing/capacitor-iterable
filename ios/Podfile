@@ -9,10 +9,5 @@ end
 
 target 'Plugin' do
   capacitor_pods
-  pod 'IterableSDK'
-end
-
-target 'PluginTests' do
-  capacitor_pods
-  pod 'IterableSDK'
+  pod 'Iterable-iOS-SDK'
 end
