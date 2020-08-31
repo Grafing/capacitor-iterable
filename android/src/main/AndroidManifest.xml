@@ -13,6 +13,6 @@
         </intent-filter>
       </service>
     </application>
-    <meta-data android:name="iterable_notification_icon" android:resource="@drawable/ic_notification_icon"/>
+    <meta-data android:name="iterable_notification_icon" android:resource="@drawable/iterable_push_icon"/>
     <meta-data android:name="iterable_notification_color" android:value="#FFFFFF"/>
   </manifest>
