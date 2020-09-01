@@ -77,7 +77,7 @@ public class IterablePlugin: CAPPlugin {
     }
 
      @objc func trackEvent(_ call: CAPPluginCall) {
-        let name = call.getString("name")
+        let name = call.getString("name") ?? ""
         let data = call.getObject("data")
         IterableAPI.track(event: "\(name)" , dataFields: data)
         call.success();
