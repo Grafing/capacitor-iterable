@@ -12,7 +12,7 @@ public class IterablePlugin: CAPPlugin {
         let config = IterableConfig()
         // TODO
         // IterableConfig.autoPushRegistration to false,
-        IterableAPI.initialize(apiKey: apiKey, launchOptions: launchOptions, config: config)
+        IterableAPI.initialize(apiKey: apiKey, config: config)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didRegisterWithToken(notification:)), name: Notification.Name(CAPNotifications.DidRegisterForRemoteNotificationsWithDeviceToken.name()), object: nil)
     }
@@ -28,13 +28,13 @@ public class IterablePlugin: CAPPlugin {
         IterableAPI.register(token: deviceToken)
     }
 
-    @objc func updateEmail(_ call: CAPPluginCall) {
+    @objc func setEmail(_ call: CAPPluginCall) {
         let email = call.getString("email")
         IterableAPI.email = email
         call.success()
     }
 
-    @objc func updateEmail(_ call: CAPPluginCall) {
+    @objc func setUserId(_ call: CAPPluginCall) {
         let userId = call.getString("userId")
         IterableAPI.userId = userId
         call.success()
@@ -72,14 +72,14 @@ public class IterablePlugin: CAPPlugin {
     }
 
     @objc func unregisterPush(_ call: CAPPluginCall) {
-        IterableAPI.disablePush()
+        IterableAPI.disableDeviceForCurrentUser()
         call.success()
     }
 
      @objc func trackEvent(_ call: CAPPluginCall) {
         let name = call.getString("name")
         let data = call.getObject("data")
-        IterableAPI.track(event: "Custom_event", data)
+        IterableAPI.track(event: "\(name)" , dataFields: data)
         call.success();
      }
 
