@@ -13,8 +13,8 @@ export class Iterable {
     unregisterPush() {
         return IterablePlugin.unregisterPush();
     }
-    refreshToken() {
-        return IterablePlugin.refreshToken();
+    refreshToken(options) {
+        return IterablePlugin.refreshToken(options);
     }
     updateUserInfo(options) {
         return IterablePlugin.updateUserInfo(options);

@@ -50,7 +50,8 @@ public class IterablePlugin extends Plugin {
 
     @PluginMethod()
     public void refreshToken(PluginCall call){
-        IterableFirebaseMessagingService.handleTokenRefresh();
+        String token = call.getString("token");
+        IterableApi.getInstance().registerDeviceToken(token);
         call.success();
     }
 

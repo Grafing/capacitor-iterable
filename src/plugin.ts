@@ -16,8 +16,8 @@ export class Iterable implements IterableProtocol {
     unregisterPush(): Promise<void> {
         return IterablePlugin.unregisterPush();
     }
-    refreshToken(): Promise<void> {
-        return IterablePlugin.refreshToken();
+    refreshToken(options: {token?: string}): Promise<void> {
+        return IterablePlugin.refreshToken(options);
     }
     updateUserInfo(options: { street1?: string; street2?: string; city?: string; state?: string; zip?: string; }): Promise<void> {
         return IterablePlugin.updateUserInfo(options);

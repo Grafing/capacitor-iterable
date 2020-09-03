@@ -12,7 +12,9 @@ export interface IterableProtocol {
     }): Promise<void>;
     registerForPush(): Promise<void>;
     unregisterPush(): Promise<void>;
-    refreshToken(): Promise<void>;
+    refreshToken(options: {
+        token?: string;
+    }): Promise<void>;
     updateUserInfo(options: {
         street1?: string;
         street2?: string;
