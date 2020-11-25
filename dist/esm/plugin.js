@@ -22,5 +22,8 @@ export class Iterable {
     trackEvent(options) {
         return IterablePlugin.trackEvent(options);
     }
+    showInbox() {
+        return IterablePlugin.showInbox();
+    }
 }
 //# sourceMappingURL=plugin.js.map

@@ -26,4 +26,7 @@ export class Iterable implements IterableProtocol {
         return IterablePlugin.trackEvent(options);
     }
 
+    showInbox(): Promise <void> {
+        return IterablePlugin.showInbox();
+    }
 }

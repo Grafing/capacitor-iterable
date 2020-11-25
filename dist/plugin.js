@@ -24,6 +24,9 @@ var capacitorPlugin = (function (exports, core) {
         trackEvent(options) {
             return IterablePlugin.trackEvent(options);
         }
+        showInbox() {
+            return IterablePlugin.showInbox();
+        }
     }
 
     exports.Iterable = Iterable;

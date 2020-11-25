@@ -29,4 +29,6 @@ export interface IterableProtocol {
     name?: string;
     data: any;
   }): Promise<void>
+
+  showInbox(): Promise<void>
 }

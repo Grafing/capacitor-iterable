@@ -22,4 +22,5 @@ export declare class Iterable implements IterableProtocol {
         name?: string;
         data: any;
     }): Promise<void>;
+    showInbox(): Promise<void>;
 }
