@@ -27,6 +27,9 @@ var capacitorPlugin = (function (exports, core) {
         showInbox() {
             return IterablePlugin.showInbox();
         }
+        getNumberOfUnreadMessages() {
+            return IterablePlugin.getNumberOfUnreadMessages();
+        }
     }
 
     exports.Iterable = Iterable;

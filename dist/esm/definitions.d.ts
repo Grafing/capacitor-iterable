@@ -27,4 +27,5 @@ export interface IterableProtocol {
         data: any;
     }): Promise<void>;
     showInbox(): Promise<void>;
+    getNumberOfUnreadMessages(): Promise<void>;
 }

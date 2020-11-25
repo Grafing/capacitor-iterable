@@ -25,8 +25,10 @@ export class Iterable implements IterableProtocol {
     trackEvent(options: { name?: string; data: any; }): Promise<void> {
         return IterablePlugin.trackEvent(options);
     }
-
     showInbox(): Promise <void> {
         return IterablePlugin.showInbox();
+    }
+    getNumberOfUnreadMessages(): Promise<void>{
+        return IterablePlugin.getNumberOfUnreadMessages();
     }
 }

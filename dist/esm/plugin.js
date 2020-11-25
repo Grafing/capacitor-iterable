@@ -25,5 +25,8 @@ export class Iterable {
     showInbox() {
         return IterablePlugin.showInbox();
     }
+    getNumberOfUnreadMessages() {
+        return IterablePlugin.getNumberOfUnreadMessages();
+    }
 }
 //# sourceMappingURL=plugin.js.map
