@@ -1,5 +1,9 @@
 package com.tmavrin.plugins.iterable;
 
+import android.content.Intent;
+
+import androidx.annotation.NonNull;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
@@ -8,8 +12,15 @@ import com.getcapacitor.PluginMethod;
 import com.iterable.iterableapi.IterableApi;
 import com.iterable.iterableapi.IterableConfig;
 import com.iterable.iterableapi.IterableFirebaseMessagingService;
+import com.iterable.iterableapi.IterableInAppHandler;
+import com.iterable.iterableapi.IterableInAppMessage;
+import com.iterable.iterableapi.ui.inbox.InboxMode;
+import com.iterable.iterableapi.ui.inbox.IterableInboxActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 @NativePlugin
 public class IterablePlugin extends Plugin {
@@ -20,7 +31,7 @@ public class IterablePlugin extends Plugin {
         String apiKey = this.bridge.getConfig().getString(CONFIG_KEY_PREFIX + "apiKey", "ADD_IN_CAPACITOR_CONFIG_JSON");
         String pushIntegrationName = this.bridge.getConfig().getString(CONFIG_KEY_PREFIX + "pushIntegrationName", "ADD_IN_CAPACITOR_CONFIG_JSON");
 
-        IterableConfig.Builder configBuilder = new IterableConfig.Builder().setPushIntegrationName(pushIntegrationName).setAutoPushRegistration(false);
+        IterableConfig.Builder configBuilder = new IterableConfig.Builder().setPushIntegrationName(pushIntegrationName).setAutoPushRegistration(false).setInAppHandler(new InAppHandler());
         IterableApi.initialize(this.bridge.getContext(), apiKey, configBuilder.build());
 
         super.load();
@@ -96,7 +107,37 @@ public class IterablePlugin extends Plugin {
         String eventName = call.getString("name");
         JSObject dataFields = call.getObject("data");
         IterableApi.getInstance().track(eventName, dataFields);
-
         call.success();
+    }
+
+    @PluginMethod()
+    public void showInbox(PluginCall call){
+
+        Intent intent = new Intent(getContext(), IterableInboxActivity.class);
+        intent.putExtra("inboxMode", InboxMode.POPUP);
+        getContext().startActivity((intent));
+        call.success();
+    }
+
+    @PluginMethod()
+    public void getNumberOfUnreadMessages(PluginCall call){
+        List<IterableInAppMessage> messages = IterableApi.getInstance().getInAppManager().getMessages();
+        int counter = 0;
+        for (IterableInAppMessage message: messages) {
+            if(!message.isRead()){
+                counter++;
+            }
+        }
+        JSObject ret = new JSObject();
+        ret.put("unreadMessages", counter);
+        call.success(ret);
+    }
+}
+
+class InAppHandler implements IterableInAppHandler{
+    @NonNull
+    @Override
+    public InAppResponse onNewInApp(@NonNull IterableInAppMessage message) {
+        return InAppResponse.SHOW;
     }
 }

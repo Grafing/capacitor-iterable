@@ -28,7 +28,7 @@ export class Iterable implements IterableProtocol {
     showInbox(): Promise <void> {
         return IterablePlugin.showInbox();
     }
-    getNumberOfUnreadMessages(): Promise<void>{
+    getNumberOfUnreadMessages(): Promise<any>{
         return IterablePlugin.getNumberOfUnreadMessages();
     }
 }

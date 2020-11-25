@@ -23,5 +23,5 @@ export declare class Iterable implements IterableProtocol {
         data: any;
     }): Promise<void>;
     showInbox(): Promise<void>;
-    getNumberOfUnreadMessages(): Promise<void>;
+    getNumberOfUnreadMessages(): Promise<any>;
 }

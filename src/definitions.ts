@@ -32,5 +32,5 @@ export interface IterableProtocol {
 
   showInbox(): Promise<void>;
 
-  getNumberOfUnreadMessages(): Promise<void>;
+  getNumberOfUnreadMessages(): Promise<any>;
 }
