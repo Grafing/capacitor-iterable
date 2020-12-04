@@ -10,11 +10,22 @@ public class IterablePlugin: CAPPlugin {
         let apiKey = getConfigValue("apiKey") as? String ?? "ADD_IN_CAPACITOR_CONFIG_JSON"
 
         let config = IterableConfig()
+        config.inAppDelegate = InAppMessageDelagate()
         // TODO
         // IterableConfig.autoPushRegistration to false,
         IterableAPI.initialize(apiKey: apiKey, config: config)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didRegisterWithToken(notification:)), name: Notification.Name(CAPNotifications.DidRegisterForRemoteNotificationsWithDeviceToken.name()), object: nil)
+    }
+
+    class InAppMessageDelagate: IterableInAppDelegate {
+        func onNew(message: IterableInAppMessage) -> InAppShowResponse {
+            if(message.read){
+                return .skip
+            } else {
+                return .show
+            }
+        }
     }
 
     @objc func didRegisterWithToken(notification: NSNotification) {
@@ -24,8 +35,15 @@ public class IterablePlugin: CAPPlugin {
        IterableAPI.register(token: deviceToken)
   }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         IterableAPI.register(token: deviceToken)
+        IterableAppIntegration.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+    }
+
+    @objc func showInbox(_ call: CAPPluginCall){
+        DispatchQueue.main.async {
+            self.bridge.viewController.present(IterableInboxNavigationViewController(), animated: true, completion: nil)
+        }
     }
 
     @objc func setEmail(_ call: CAPPluginCall) {
