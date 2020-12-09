@@ -11,4 +11,5 @@ CAP_PLUGIN(IterablePlugin, "IterablePlugin",
            CAP_PLUGIN_METHOD(updateUserInfo, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(trackEvent, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(showInbox, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getNumberOfUnreadMessages, CAPPluginReturnPromise);
 )

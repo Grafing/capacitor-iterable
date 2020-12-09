@@ -46,6 +46,22 @@ public class IterablePlugin: CAPPlugin {
         }
     }
 
+    @objc func getNumberOfUnreadMessages(_ call: CAPPluginCall){
+        let messages = IterableAPI.inAppManager.getMessages()
+        var numOfMessages: Int = 0
+        for message in messages{
+            if (!message.read){
+                numOfMessages += 1
+            }
+        }
+        let object: [String: Int] = [
+            "unreadMessages": numOfMessages
+        ]
+        if(JSONSerialization.isValidJSONObject(object)){
+            call.success(object)    
+        }
+    }
+
     @objc func setEmail(_ call: CAPPluginCall) {
         let email = call.getString("email")
         IterableAPI.email = email
