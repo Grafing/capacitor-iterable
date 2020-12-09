@@ -1,6 +1,6 @@
 {
   "name": "capacitor-iterable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Iterable plugin for Ionic Capacitor",
   "main": "dist/plugin.js",
   "module": "dist/esm/index.js",
